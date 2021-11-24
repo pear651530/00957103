@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>00957103-HW7-2</title>
+    <style type="text/CSS">
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            background-color: lightblue;
+            font-family: Perpetua;
+        }
+
+        table, td, th {
+            border: 1px solid black;
+            padding: 4px;
+        }
+
+        th {
+            text-align: center;
+            color: white;
+            background-color: darkblue;
+        }
+
+        tr.oddrow {
+            background-color: white;
+        }
+
+        td {
+            text-align: center;
+        }
+    </style>
+    <script type="text/javascript">
+        let tab1;
+        let tab2;
+        let tab3;
+        let tab4;
+        let but1;
+        let but2;
+        let output;
+        let show="";
+        let tags;
+        let obj={title:"",author:"",year:"",url:""};
+
+        function save(){
+            tab1=document.getElementById("title").value;
+            tab2=document.getElementById("author").value;
+            tab3=document.getElementById("year").value;
+            tab4=document.getElementById("bookurl").value;
+            obj.title=tab1;
+            obj.author=tab2;
+            obj.year=tab3;
+            obj.url=tab4;
+            let val=JSON.stringify(obj);
+            let current=new Date();
+            let num=current.valueOf();
+            let tag="ntou-"+num;
+            localStorage.setItem(tag, val);
+            loadsave();
+        }
+
+        function remove(){
+            window.alert("All items were removed!");
+            let length = localStorage.length;
+            for (let i = length - 1; i >= 0; i--){ //remove後長度會變，最好由後往前
+                if(localStorage.key(i).startsWith("ntou-")){ //判斷開頭
+                    localStorage.removeItem("ntou-"+localStorage.key(i).substring(5,localStorage.key(i).length));
+                }
+            }
+            loadsave();
+        }
+
+        function loadsave(){
+            let length = localStorage.length;
+            tags = [];
+            for (let i = 0; i < length; ++i){
+                if(localStorage.key(i).startsWith("ntou-")){
+                    tags[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                }
+            }
+            show="<table><thead><tr><th>Title</th><th>Author</th><th>Year</th><th>URL</th></tr></thead>";
+            for (let j in tags){
+                show += "<tbody><tr><td>"+tags[j].title+"</td><td>"+tags[j].author+"</td><td>"+tags[j].year+"</td><td><a href='"+tags[j].url+"' target='_blank' </a>"+tags[j].url+"</td></tr></tbody>";
+            }
+            show+="</table>"
+            output.innerHTML=show;
+        }
+
+        function start(){
+            output=document.getElementById("display");
+            show="<table><thead><tr><th>Title</th><th>Author</th><th>Year</th><th>URL</th></tr></thead>";
+            output.innerHTML=show;
+            but1=document.getElementById("addButton");
+            but1.addEventListener("click", save, false);
+            but2=document.getElementById("removeAllButton");
+            but2.addEventListener("click", remove, false);
+            loadsave();
+        }
+
+        window.addEventListener( "load", start, false );
+    </script>
+</head>
+
+<body>
+    <p>
+        <a href="https://pear651530.github.io/00957103/00957103-HW7-2" target="_blank">GitHub Link</a>
+    </p>
+    <form action="#">
+        <p>
+            <label>Book Title:
+                <input id="title" type="text" size="20">
+            </label>
+            <label>Author(s):
+                <input id="author" type="text" size="20">
+            </label>
+            <label>Year:
+                <input id="year" type="number" size="20">
+            </label>
+            <label>Book URL:
+                <input id="bookurl" type="url" size="40">
+            </label>
+        </p>
+        <p>
+            <input type="button" value="Add New Item" id="addButton">
+            <input type="button" value="Remove All Items" id="removeAllButton">
+        </p>
+    </form>
+    <hr>
+    <div id="display">
+    </div>
+
+
+</body>
+</html>
