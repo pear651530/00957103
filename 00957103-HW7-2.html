@@ -39,7 +39,8 @@
         let but2;
         let output;
         let show="";
-        let tags;
+        let tags; //存val值
+        let all; //存key值
         let obj={title:"",author:"",year:"",url:""};
 
         function save(){
@@ -61,26 +62,32 @@
 
         function remove(){
             window.alert("All items were removed!");
-            let length = localStorage.length;
-            for (let i = length - 1; i >= 0; i--){ //remove後長度會變，最好由後往前
-                if(localStorage.key(i).startsWith("ntou-")){ //判斷開頭
-                    localStorage.removeItem("ntou-"+localStorage.key(i).substring(5,localStorage.key(i).length));
-                }
+            for (let i = 0; i<all.length; i++){ //remove後長度會變，最好由後往前
+                localStorage.removeItem(all[i]);
             }
             loadsave();
         }
 
         function loadsave(){
             let length = localStorage.length;
+            let hold=0;
             tags = [];
+            all=[];
             for (let i = 0; i < length; ++i){
                 if(localStorage.key(i).startsWith("ntou-")){
-                    tags[i] = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                    tags[hold] = JSON.parse(localStorage.getItem(localStorage.key(i)));
+                    all[hold]=localStorage.key(i);
+                    hold++;
                 }
             }
             show="<table><thead><tr><th>Title</th><th>Author</th><th>Year</th><th>URL</th></tr></thead>";
             for (let j in tags){
-                show += "<tbody><tr><td>"+tags[j].title+"</td><td>"+tags[j].author+"</td><td>"+tags[j].year+"</td><td><a href='"+tags[j].url+"' target='_blank' </a>"+tags[j].url+"</td></tr></tbody>";
+                if(j % 2 != 0){
+                    show += "<tbody><tr class='oddrow'><td>"+tags[j].title+"</td><td>"+tags[j].author+"</td><td>"+tags[j].year+"</td><td><a href='"+tags[j].url+"' target='_blank' </a>"+tags[j].url+"</td></tr></tbody>";
+                }
+                else{
+                    show += "<tbody><tr><td>"+tags[j].title+"</td><td>"+tags[j].author+"</td><td>"+tags[j].year+"</td><td><a href='"+tags[j].url+"' target='_blank' </a>"+tags[j].url+"</td></tr></tbody>";
+                }
             }
             show+="</table>"
             output.innerHTML=show;
