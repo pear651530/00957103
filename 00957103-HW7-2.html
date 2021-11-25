@@ -62,7 +62,7 @@
 
         function remove(){
             window.alert("All items were removed!");
-            for (let i = 0; i<all.length; i++){ //remove後長度會變，最好由後往前
+            for (let i = 0; i<all.length; i++){
                 localStorage.removeItem(all[i]);
             }
             loadsave();
