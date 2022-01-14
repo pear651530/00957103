@@ -1,0 +1,246 @@
+<html>
+<head>
+    <style>
+        @import url(https://fonts.googleapis.com/css?family=Montserrat);
+        html{
+            height: 100%;
+            font-weight: 800;
+            overflow: hidden;
+        }
+        body{
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            background: url(封面2.jpg) ;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            font-family: Arial;
+        }
+
+        svg {
+            display: block;
+            font: 6.5em '密室逃脫之逃出系館';
+            width: 960px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .text-copy {
+            fill: none;
+            stroke: white;
+            stroke-dasharray: 6% 29%;
+            stroke-width: 5px;
+            stroke-dashoffset: 0%;
+            animation: stroke-offset 5.2s infinite linear;
+        }
+
+        .text-copy:nth-child(1){
+            stroke: #cfcccf;
+            animation-delay: -1s;
+        }
+
+        .text-copy:nth-child(2){
+            stroke: #535353;
+            animation-delay: -2s;
+        }
+
+        .text-copy:nth-child(3){
+            stroke: #b3b3b3;
+            animation-delay: -3s;
+        }
+
+        .text-copy:nth-child(4){
+            stroke: #ffffff;
+            animation-delay: -4s;
+        }
+
+        .text-copy:nth-child(5){
+            stroke: #797979;
+            animation-delay: -5s;
+        }
+
+        @keyframes stroke-offset{
+            100% {stroke-dashoffset: -35%;}
+        }
+        /*按鈕樣式*/
+        .shape-ex3 {
+            width: 150px;
+            height: 50px;
+            display: block;
+            text-align: center;
+            cursor: pointer;
+            line-height: 15px;
+            color: #fff;
+            background-color: transparent;
+            border: 2px solid #fff;
+            position: absolute;
+            left:44%;
+            transition: all .3s linear;
+        }
+        .shape-ex3 > p{
+            position: relative;
+            z-index: 1;
+        }
+        .shape-ex3::before{
+            content: "";
+            width: 0%;
+            height: 100%;
+            display: block;
+            background-color: #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: all .3s ease;
+        }
+        .shape-ex3:hover{
+            color: #000;
+        }
+        .shape-ex3:hover::before{
+            width: 100%;
+        }
+        .shape-ex3 p a{
+            text-decoration: none;
+        }
+        .ranking img{
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+        }
+        
+        /*下雨*/
+        #rain {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-size: 100% 100%;
+        }
+
+        .raindrop {
+            display: inline-block;
+            position: absolute;
+            top: 0;
+            width: 5px;
+            height: 5px;
+            background: radial-gradient(#8fd4fc, #52b1f2, #0599fc);
+            border-radius: 5000px;
+            transform: rotateY(45deg) translate(-70%, -50%);
+            animation: raindrop .8s;
+        }
+
+        @keyframes raindrop {
+            0% {top:5%;}
+            10% {top:10%;}
+            20% {top:20%;}
+            30% {top:30%;}
+            40% {top:40%;}
+            50% {top:50%;}
+            60% {top:60%;}
+            70% {top:70%;}
+            80% {top:80%;}
+            90% {top:90%;}
+            100% {top:95%;}
+        }
+    </style>
+</head>
+<body>
+    <script>
+         let clientWidth;
+            let clientHeight;
+            window.onload = function onload(){
+                let rain = document.getElementById('rain');
+                clientWidth = document.body.clientWidth;
+                clientHeight = document.body.clientHeight;
+                
+                function dorpRain(){
+                    setTimeout(() => {
+                        if(typeof clientWidth !== 'undefined' && null !== clientWidth){
+                            let el = document.createElement('div');
+                            el.setAttribute('class', 'raindrop');
+                            let left = parseInt(Math.random() * clientWidth, 10) + 'px';
+                            el.style.left = left;
+                            rain.appendChild(el);
+
+                            let time = parseInt(Math.random() * 350, 10);
+
+                            setTimeout(() => {
+                                rain.removeChild(el);
+
+                                let newEl = document.createElement('div');
+                                newEl.setAttribute('class', 'ripple');
+                                newEl.style.left = left;
+                                newEl.style.top = parseInt(clientHeight / 100 * 50 + (time / 350 * (clientHeight / 100 * 50)), 10) + 'px';
+                                rain.appendChild(newEl);
+
+                                setTimeout(() => {
+                                    rain.removeChild(newEl);
+                                }, 600)
+                            }, 400 + time, 10)
+                        }
+
+                        dorpRain();
+                    }, parseInt(10 + Math.random() * 10, 10)) 
+                }
+                dorpRain();
+            }
+
+            function debounce(fn, wait, context){
+                let timer = null;
+                return function(){
+                    timer ? clearTimeout(timer) : '';
+                    timer = setTimeout(() => {
+                        fn.apply(context, arguments);
+                    }, wait)
+                }
+            }
+
+            function onresize(event){
+                clientWidth = document.body.clientWidth;
+                clientHeight = document.body.clientHeight;
+            }
+
+            window.addEventListener("resize", debounce(onresize, 200, null));
+
+        function playPause() {    
+            var music = document.getElementById('music');    
+            var image = document.getElementById('image');    
+            if (music.paused){    
+                music.play();    
+                image.setAttribute("src", "play.jpg");    
+            }    
+            else{    
+                music.pause();    
+                image.setAttribute("src", "pause.jpg");  
+            }    
+        }   
+    </script>
+    <div id="rain">
+        <a style="position:absolute; right: 0; z-index: 1; top: 0;" onclick = "playPause();"><img id="image" src="pause.jpg" width="48" height="50">
+            <audio loop="loop" id="music">
+                <source src="雷雨.mp3" type="audio/mpeg">
+            </audio> 
+        </a> 
+        <svg viewBox="0 0 950 100">
+            <symbol id="s-text">
+                <text text-anchor="middle" x="50%" y="80%">密室逃脫之逃出系館</text>
+            </symbol>
+        
+            <g class = "g-ants">
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+                <use xlink:href="#s-text" class="text-copy"></use>
+            </g>
+        </svg>
+        <a href="game.html"><div class="shape-ex3"><p>開始遊玩</p></div></a><br><br><br><br>
+        <a href="遊玩介紹.html"><div class="shape-ex3"><p>遊戲介紹</p></div></a>
+        <a href="簡報.pptx" value="簡報"><div class="ranking"><img src="簡報.png"></div></a>
+    </div>
+        
+</body>
+</html>

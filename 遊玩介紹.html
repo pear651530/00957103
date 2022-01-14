@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>遊玩介紹</title>
+    <style>
+        .test {
+            position: absolute;
+            top: 10%;
+            left: 0%;
+            right: 0%;
+        }
+
+        .text-magic {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(2.4);
+            font-size: 36px;
+            font-family: Raleway, Verdana, Arial;
+            color: #fff;
+        }
+
+        .white {
+            position: absolute;
+            left: -10px;
+            width: 100%;
+            height: 3px;
+            background: #000;
+            z-index: 4;
+            animation: whiteMove 3s ease-out infinite;
+        }
+
+        .text-magic::before {
+            content: attr(data-word);
+            position: absolute;
+            top: 0;
+            left: 0.5px;
+            height: 0px;
+            color: rgba(255, 255, 255, 0.9);
+            overflow: hidden;
+            z-index: 2;
+            animation: redShadow 1s ease-in infinite;
+            filter: contrast(200%);
+            text-shadow: 1px 0 0 red;
+        }
+
+        .text-magic::after {
+            content: attr(data-word);
+            position: absolute;
+            top: 0;
+            left: -3px;
+            height: 36px;
+            color: rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            z-index: 3;
+            background: rgba(0, 0, 0, 0.9);
+            animation: redHeight 1.5s ease-out infinite;
+            filter: contrast(200%);
+            text-shadow: -1px 0 0 cyan;
+            mix-blend-mode: darken;
+        }
+
+        @keyframes redShadow {
+            20% {
+                height: 32px;
+            }
+
+            60% {
+                height: 6px;
+            }
+
+            100% {
+                height: 42px;
+            }
+        }
+
+        @keyframes redHeight {
+            20% {
+                height: 42px;
+            }
+
+            35% {
+                height: 12px;
+            }
+
+            50% {
+                height: 40px;
+            }
+
+            60% {
+                height: 20px;
+            }
+
+            70% {
+                height: 34px;
+            }
+
+            80% {
+                height: 22px;
+            }
+
+            100% {
+                height: 0px;
+            }
+        }
+
+        @keyframes whiteMove {
+            8% {
+                top: 38px;
+            }
+
+            14% {
+                top: 8px;
+            }
+
+            20% {
+                top: 42px;
+            }
+
+            32% {
+                top: 2px;
+            }
+
+            99% {
+                top: 30px;
+            }
+        }
+
+        body {
+            overflow: hidden;
+            background-color: black;
+        }
+
+        p {
+            font-family: DFKai-sb;
+            color: white;
+            text-align: center;
+        }
+
+        #icon {
+            position: absolute;
+            float: left;
+        }
+
+        .a {
+            font-size: 30px;
+        }
+
+        .box {
+            position: absolute;
+            top: 20%;
+            width: 100%;
+            height: 100%;
+        }
+
+        .test {
+            top: 0;
+            width: 100%;
+            height: 20%;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        let music, image, mus1;
+        let interval = null, whetherplay = false;
+
+        window.addEventListener("load", start, false);
+
+        function start() {
+            music = document.getElementById('music');
+            image = document.getElementById('image');
+            mus1 = document.getElementById('mus1');
+        }
+
+        function playPause() {
+            if (whetherplay) {
+                image.setAttribute("src", "pause.jpg");
+                music.pause();
+                mus1.pause();
+                whetherplay = false;
+            }
+            else {
+                if (interval)
+                    return;
+                image.setAttribute("src", "play.jpg");
+                interval = window.setInterval("lop()", 4000);
+                whetherplay = true;
+                mus1.play();
+            }
+        }
+
+        function lop() {
+            if (!whetherplay) {
+                window.clearInterval(interval);
+                interval = null;
+            }
+            music.play();
+            setTimeout(function () {
+                music.play();
+            }, 1000);
+
+        }
+    </script>
+</head>
+
+<body>
+    <img id="image" src="pause.jpg" width="48" height="50" onclick="playPause();"
+        style="position:absolute; right: 0; z-index: 3; top: 0;">
+    <audio id="music">
+        <source src="雜訊.mp3" type="audio/mpeg">
+    </audio>
+    <audio loop="loop" id="mus1">
+        <source src="雷雨.mp3" type="audio/mpeg">
+    </audio>
+    </a>
+    <div class="test">
+        <div class="text-magic" data-word=" 遊戲玩法" style=" z-index: 2;">
+            遊戲玩法
+            <div class="white"></div>
+        </div>
+        <div id="icon">
+            <a href="密室逃脫主頁.html"><img src="鍵頭.png" style="left: 5%; top:5%; width: 40%; height: 20%;"></a>
+        </div>
+    </div>
+    <div class="box">
+        <p class="a">此遊戲排行是依照玩家遊玩時間去做排名</p>
+        <p class="a">如果使用提示，時間將會增加</p>
+        <p class="a">遊戲內有許多的按鈕、道具和線索</p>
+        <p class="a">玩家需要自行去尋找</p>
+        <p class="a">點擊線索可放大檢視</p>
+        <p class="a">拖曳正確道具即可使用</p>
+        <p class="a">錯誤則會飛回道具欄</p>
+    </div>
+</body>
+
+</html>
