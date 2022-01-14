@@ -138,7 +138,13 @@
             font-size: 40px;
         }
 
-        #light14, #light15 {
+        #light14,
+        #light15,
+        #light16,
+        #light17,
+        #light18,
+        #light19,
+        #light20 {
             display: none;
             position: absolute;
             top: 20%;
@@ -156,7 +162,13 @@
         #closebnt5,
         #closebnt6,
         #closebnt7,
-        #closebnt8, #closebnt9 {
+        #closebnt8,
+        #closebnt9,
+        #closebnt10,
+        #closebnt11,
+        #closebnt12,
+        #closebnt13,
+        #closebnt14 {
             line-height: 12px;
             width: 45px;
             font-size: 8pt;
@@ -175,7 +187,13 @@
         #closebnt5:hover,
         #closebnt6:hover,
         #closebnt7:hover,
-        #closebnt8:hover,#closebnt9:hover {
+        #closebnt8:hover,
+        #closebnt9:hover,
+        #closebnt10:hover,
+        #closebnt11:hover,
+        #closebnt12:hover,
+        #closebnt13:hover,
+        #closebnt14:hover {
             width: 50px;
         }
     </style>
@@ -1707,6 +1725,49 @@
                 $("#fade").hide();
             })
         }
+
+        function big3() {
+            if (qa.id == "電腦教室-問題1") {
+                $("#light16").show();
+                $("#fade").show();
+                $("#closebnt10").click(function () {
+                    $("#light16").hide();
+                    $("#fade").hide();
+                })
+            }
+            else if (qa.id == "電腦教室-問題2") {
+                $("#light17").show();
+                $("#fade").show();
+                $("#closebnt11").click(function () {
+                    $("#light17").hide();
+                    $("#fade").hide();
+                })
+            }
+            else if (qa.id == "電腦教室-問題3") {
+                $("#light18").show();
+                $("#fade").show();
+                $("#closebnt12").click(function () {
+                    $("#light18").hide();
+                    $("#fade").hide();
+                })
+            }
+            else if (qa.id == "電腦教室-問題4") {
+                $("#light19").show();
+                $("#fade").show();
+                $("#closebnt13").click(function () {
+                    $("#light19").hide();
+                    $("#fade").hide();
+                })
+            }
+            else if (qa.id == "電腦教室-問題5") {
+                $("#light20").show();
+                $("#fade").show();
+                $("#closebnt14").click(function () {
+                    $("#light20").hide();
+                    $("#fade").hide();
+                })
+            }
+        }
     </script>
 </head>
 
@@ -1723,7 +1784,8 @@
         <img id="電腦教室-電腦" src="電腦教室-電腦.jpg" width="800" height="600"
             style="left: 0px; top: 0px; z-index: 1; position: absolute;" usemap="#map0">
         <img id="電腦教室-問題" src="電腦教室-問題.jpg"
-            style="left: 150px; top: 110px; z-index: 2; position: absolute; display: none;" width="450" height="225">
+            style="left: 150px; top: 110px; z-index: 2; position: absolute; display: none;" width="450" height="225"
+            onclick="big3()">
         <input id="電腦教室-問題button" type="button" value="下一頁"
             style="left: 580px; top: 350px; position: absolute; z-index: 2; border: 3px dashed navy; background-color: lightblue; display: none;">
         <input id="電腦教室-答案" type="text" placeholder="請依照格式輸入答案"
@@ -1737,7 +1799,8 @@
         <img id="大門-筆電" src="筆電.png" style="left: 350px; top: 400px; z-index: 2; position: absolute; display: none;"
             width="60" height="20">
         <img id="大廳電腦-問題" src="大廳電腦-問題.jpg"
-            style="left: 260px; top: 100px; z-index: 2; position: absolute; display: none;" width="300" height="150" onclick="big2()">
+            style="left: 260px; top: 100px; z-index: 2; position: absolute; display: none;" width="300" height="150"
+            onclick="big2()">
         <input id="大廳電腦-提示" type="button" value="提示"
             style="left: 520px; top: 250px; position: absolute; z-index: 2; border: 3px dashed navy; background-color: lightblue; display: none;">
         <img id="一樓電腦-開機" src="一樓電腦-開機.png"
@@ -1928,6 +1991,26 @@
     <div id="light15">
         <img src="大廳電腦-問題.jpg" style="margin: 0 auto">
         <input id='closebnt9' type='image' src='關閉.png'>
+    </div>
+    <div id="light16">
+        <img src="電腦教室-問題1.jpg" style="margin: 0 auto">
+        <input id='closebnt10' type='image' src='關閉.png'>
+    </div>
+    <div id="light17">
+        <img src="電腦教室-問題2.jpg" style="margin: 0 auto">
+        <input id='closebnt11' type='image' src='關閉.png'>
+    </div>
+    <div id="light18">
+        <img src="電腦教室-問題3.jpg" style="margin: 0 auto">
+        <input id='closebnt12' type='image' src='關閉.png'>
+    </div>
+    <div id="light19">
+        <img src="電腦教室-問題4.jpg" style="margin: 0 auto">
+        <input id='closebnt13' type='image' src='關閉.png'>
+    </div>
+    <div id="light20">
+        <img src="電腦教室-問題5.jpg" style="margin: 0 auto">
+        <input id='closebnt14' type='image' src='關閉.png'>
     </div>
     <div id="fade"></div>
 </body>
