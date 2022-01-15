@@ -99,7 +99,7 @@
         #light6,
         #light7,
         #light8,
-        #light9 {
+        #light9, #light24 {
             display: none;
             position: absolute;
             top: 200px;
@@ -144,7 +144,9 @@
         #light17,
         #light18,
         #light19,
-        #light20 {
+        #light20,
+        #light21,
+        #light22 {
             display: none;
             position: absolute;
             top: 20%;
@@ -168,11 +170,10 @@
         #closebnt11,
         #closebnt12,
         #closebnt13,
-        #closebnt14 {
+        #closebnt14,
+        #closebnt15 {
             line-height: 12px;
             width: 45px;
-            font-size: 8pt;
-            font-family: tahoma;
             margin-top: 1px;
             margin-right: 2px;
             position: absolute;
@@ -193,8 +194,54 @@
         #closebnt11:hover,
         #closebnt12:hover,
         #closebnt13:hover,
-        #closebnt14:hover {
+        #closebnt14:hover,
+        #closebnt15:hover {
             width: 50px;
+        }
+
+        #outtext {
+            width: 550px;
+            height: 100px;
+            border: 3px solid orange;
+            background-color: white;
+            overflow: auto;
+            text-align: center;
+            line-height: 50px;
+            font-weight: bolder;
+            font-size: 30px;
+            margin: 0 auto
+        }
+
+        #light23 {
+            display: none;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 30px;
+            color: white;
+            z-index: 1002;
+            background-color: black;
+        }
+
+        #endtext {
+            display: flex;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        a{
+            background-color: white;
+            color: black;
+            font-size: larger;
+            font-weight: bolder;
+            text-decoration: none;
+        }
+
+        a:hover{
+            color: rgb(230, 222, 115);
         }
     </style>
     <script>
@@ -212,6 +259,8 @@
         let mus1, mus2, whetherplay = false;
         let ans1, ans2, ans3;
         let mouseover1, mouseover2, mouseover3, mouseover4;
+        let whatmap = 2;//現在地圖為何
+        let whatout = 1;
 
         window.addEventListener("load", start, false);
 
@@ -264,7 +313,7 @@
             qabutton1.addEventListener("click", hintask1, false);
             opencomputer = document.getElementById("一樓電腦-開機");
             opencomputerans = document.getElementById("一樓電腦-開機答案");
-            sumit = document.getElementById("一樓電腦-送出");
+            sumit = document.getElementById("階梯教室-送出");
             sumit.addEventListener("click", op, false);
             qa2 = document.getElementById("階梯教室-題目");
             qa2button = document.getElementById("階梯教室-題目button");
@@ -539,6 +588,13 @@
             else {
                 s.useMap = "#map0";
             }
+            if (s.id == "大門-開") {
+                s.useMap = "#map22";
+                return;
+            }
+            else {
+                s.useMap = "#map0";
+            }
             qa1.style.display = "none";
             qabutton1.style.display = "none";
         }
@@ -574,6 +630,7 @@
                 qaans.style.display = "none";
                 if (document.getElementById("電腦教室-答案").value == ans1) {
                     qa.style.display = "block";
+                    qabutton.style.display = "none";
                     door[3] = 1;
                 }
                 else {
@@ -1286,6 +1343,20 @@
                 }, 1500);
                 last = temp;
             }
+            else if (s.id == "大門-開") {
+                let hour, min, sec, total, temp = "";
+                total = seconds;
+                hour = parseInt(total / 3600);
+                total -= hour * 3600;
+                min = parseInt(total / 60);
+                total -= min * 60;
+                sec = total;
+                if (hour != 0) temp += " " + hour.toString() + "時";
+                if (min != 0) temp += " " + min.toString() + "分";
+                if (sec != 0) temp += " " + sec.toString() + "秒";
+                document.getElementById("score").innerHTML = temp;
+                end();
+            }
             else last = temp;
             check();
             buttonnot();
@@ -1629,7 +1700,6 @@
         function drop3(ev) {
             let data = ev.dataTransfer.getData("text");
             if (document.getElementById(data).id == "tool4img") {
-                window.alert("逃出成功!");
                 s.setAttribute("id", "大門-開");
                 s.setAttribute("src", "大門-開.jpg");
                 document.getElementById("tool4").removeChild(document.getElementById("tool4img"));
@@ -1708,13 +1778,24 @@
             }, 1500);
         }
 
-        function big1() {
-            $("#light14").show();
+        function jumpalert4() {
+            $("#light24").show();
             $("#fade").show();
-            $("#closebnt8").click(function () {
-                $("#light14").hide();
+            setTimeout(function () {
+                $("#light24").hide();
                 $("#fade").hide();
-            })
+            }, 1500);
+        }
+
+        function big1() {
+            if (qa2.id == "階梯教室-題目") {
+                $("#light14").show();
+                $("#fade").show();
+                $("#closebnt8").click(function () {
+                    $("#light14").hide();
+                    $("#fade").hide();
+                })
+            }
         }
 
         function big2() {
@@ -1768,6 +1849,90 @@
                 })
             }
         }
+
+        function showmap() {
+            $("#light21").show();
+            $("#fade").show();
+            $("#closebnt15").click(function () {
+                $("#light21").hide();
+                $("#fade").hide();
+            });
+        }
+
+        function smap() {
+            if (whatmap == 2) {
+                $("#nowmap").attr("src", "一樓地圖.jpg");
+                whatmap = 1;
+            }
+            else if (whatmap == 1) {
+                $("#nowmap").attr("src", "二樓地圖.jpg");
+                whatmap = 2;
+            }
+        }
+
+        function end() {
+            document.getElementById("mus1").pause();
+            document.getElementById("mus2").pause();
+            $("#image").attr("src", "pause.jpg");
+            $("#fade").show();
+            $("#light22").fadeIn(3000);
+            document.getElementById("walk").play();
+            setTimeout(function () {
+                $("#next").css("display", "block");
+            }, 7300);
+        }
+
+        function nextout() {
+            $("#next").css("display", "none");
+            $("#light22").hide();
+            if (whatout == 1) {
+                $("#out").attr("src", "逃出2.jpg");
+                document.getElementById("outtext").innerHTML = "海景真美~";
+                $("#light22").fadeIn(3000);
+                document.getElementById("walk").play();
+                setTimeout(function () {
+                    $("#next").css("display", "block");
+                }, 7300);
+                whatout = 2;
+            }
+            else if (whatout == 2) {
+                $("#out").attr("src", "逃出3.jpg");
+                document.getElementById("outtext").innerHTML = "回家~回家~</br>晚餐吃什麼好呢?~";
+                $("#light22").fadeIn(3000);
+                document.getElementById("walk").play();
+                setTimeout(function () {
+                    $("#light22").hide();
+                    document.getElementById("outtext").innerHTML = "呢?";
+                    setTimeout(function () {
+                        $("#light22").show();
+                        setTimeout(function () {
+                            $("#light22").hide();
+                            document.getElementById("outtext").innerHTML = "......";
+                            setTimeout(function () {
+                                $("#light22").show();
+                                setTimeout(function () {
+                                    $("#light22").hide();
+                                    document.getElementById("outtext").innerHTML = ".";
+                                    setTimeout(function () {
+                                        $("#light22").show();
+                                        setTimeout(function () {
+                                            $("#light22").hide();
+                                            document.getElementById("bang").play();
+                                            $("#light23").show();
+                                            setTimeout(function () {
+                                                $("#endtext1").css("display", "block");
+                                                $("a").css("display", "block");
+                                            }, 2000)
+                                        }, 100);
+                                    }, 200);
+                                }, 200);
+                            }, 300);
+                        }, 400);
+                    }, 500);
+                }, 7300);
+                whatout = 3;
+            }
+        }
     </script>
 </head>
 
@@ -1807,8 +1972,8 @@
             style="left: 288px; top: 165px; z-index: 2; position: absolute; display: none;" width="150" height="200">
         <input id="一樓電腦-開機答案" type="text" placeholder="請輸入開機密碼"
             style="left: 270px; top: 340px; position: absolute; z-index: 2; border: 1px double navy; background-color: white; display:none">
-        <input id="一樓電腦-送出" type="button" value="送出"
-            style="left: 535px; top: 330px; position: absolute; z-index: 2; border: 3px dashed navy; background-color: lightblue; display: none;">
+        <input id="階梯教室-送出" type="button" value="送出"
+            style="left: 510px; top: 339px; position: absolute; z-index: 2; border: 3px dashed navy; background-color: lightblue; display: none;">
         <img id="階梯教室-題目" src="階梯教室-題目.jpg"
             style="left: 183px; top: 130px; z-index: 2; position: absolute; display: none;" width="368" height="240"
             onclick="big1()" href="javascript:;">
@@ -1820,6 +1985,8 @@
             style="left: 200px; top: 200px; position: absolute; z-index: 2; border: 1px double navy; background-color: lightblue; display:none">
         <img id="大門-門禁卡小" src="大門-門禁卡小.png"
             style="left: 401px; top: 415px; z-index: 2; position: absolute; display: none;" width="30" height="15">
+        <img id="平面圖" type='button' src='地圖icon.jpg' style="position:absolute; right: 0; z-index: 3; bottom: 0;"
+            width="60" onclick="showmap()">
         <map id="map0" name="map0"></map>
         <map id="map1" name="map1">
             <area shape="circle" coords="510,320,15" onclick="toup()" href="javascript:;">
@@ -1860,6 +2027,7 @@
         </map>
         <map id="map11" name="map11">
             <area shape="rect" coords="205,33,671,600" onclick="toup()" href="javascript:;">
+            <area shape="rect" coords="0,332,223,600" onclick="jumpalert4()" href="javascript:;">
         </map>
         <map id="map12" name="map12">
             <area shape="rect" coords="770,138,796,220" onclick="toup()" href="javascript:;">
@@ -1892,6 +2060,9 @@
         </map>
         <map id="map21" name="map21">
             <area shape="rect" coords="380,178,432,247" onclick="jumpalert2()" href="javascript:;">
+        </map>
+        <map id="map22" name="map22">
+            <area shape="rect" coords="335,76,400,528" onclick="toup()" href="javascript:;">
         </map>
     </div>
     <div id="b">
@@ -2011,6 +2182,38 @@
     <div id="light20">
         <img src="電腦教室-問題5.jpg" style="margin: 0 auto">
         <input id='closebnt14' type='image' src='關閉.png'>
+    </div>
+    <div id="light21">
+        <img id="nowmap" src="二樓地圖.jpg" style="margin: 0 auto">
+        <input id='mpaswitch' type='button' value="一樓<->二樓" style="position: absolute; bottom: 0; right: 0;"
+            onclick="smap()">
+        <input id='closebnt15' type='image' src='關閉.png'>
+    </div>
+    <div id="light22">
+        <img id="out" src="逃出1.jpg" style="margin: 0 auto">
+        <div id="outtext">總算是出來了</br>疑?外面怎麼這麼亮?不是已經深夜了嗎?</br>我剛剛是不是在作夢!?</div>
+        <input id="next" type='image' src="繼續.png" style="position: absolute; bottom: 0; right: 0; display:none;"
+            onclick="nextout()">
+        <audio id="walk">
+            <source src="腳步聲.mp3" type="audio/mpeg">
+        </audio>
+        <audio id="bang">
+            <source src="跌倒.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+    <div id="light23">
+        <a href="密室逃脫主頁.html" style="position: absolute; top: 0; right: 0; display: none;">返回主頁</a>
+        <div id="endtext">
+            <p id="endtext1" style="display: none;">感謝遊玩~~</br></br>
+            通關成績:<span id="score"></span></br></br>
+            有任何疑問請聯繫開發人員</br></br>
+            >但不一定會理>.O</br></br>
+            主要開發: 黎芷柔</br></br>
+            次要開發: 賴盈萱</p>
+        </div>
+    </div>
+    <div id="light24">
+        做好垃圾分類喔
     </div>
     <div id="fade"></div>
 </body>
