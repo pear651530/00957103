@@ -129,8 +129,13 @@
         }
 
         body {
-            overflow: hidden;
+            overflow: auto;
             background-color: black;
+            width: 100%;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
         }
 
         p {
@@ -214,24 +219,27 @@
     <audio loop="loop" id="mus1">
         <source src="雷雨.mp3" type="audio/mpeg">
     </audio>
-    </a>
+    <a href="密室逃脫主頁.html"><img src="鍵頭.png" style="position: absolute; left: 0; top:0; width: 100px;"></a>
     <div class="test">
         <div class="text-magic" data-word=" 遊戲玩法" style=" z-index: 2;">
             遊戲玩法
             <div class="white"></div>
         </div>
-        <div id="icon">
-            <a href="密室逃脫主頁.html"><img src="鍵頭.png" style="left: 5%; top:5%; width: 40%; height: 20%;"></a>
-        </div>
     </div>
     <div class="box">
         <p class="a">使用提示時計時時間將會增加10分鐘</p>
-        <p class="a">答錯增加3分鐘</p>
+        <p class="a">答錯時將會增加3分鐘</p>
         <p class="a">遊戲內有許多的按鈕、道具和線索</p>
         <p class="a">玩家需要自行去尋找</p>
         <p class="a">滑鼠游標移到道具欄物品上可知道該物品為何</p>
         <p class="a">拖曳正確道具即可使用</p>
         <p class="a">題目太小可以點擊題目看放大版</p>
+        <p class="a">畫面右上角可以自行開啟/關閉BGM</p>
+        <p class="a">遊戲畫面右下角可以看地圖平面圖</p>
+        <p class="a">方向鍵-上: 向前走</p>
+        <p class="a">方向鍵-左: 左轉</p>
+        <p class="a">方向鍵-右: 右轉</p>
+        <p class="a">方向鍵-下: 退到上一個地點(僅能退一次)</p>
         <p class="a">場上有許多物品可以互動點擊~還有個小彩蛋</p>
     </div>
 </body>
