@@ -99,7 +99,8 @@
         #light6,
         #light7,
         #light8,
-        #light9, #light24 {
+        #light9,
+        #light24 {
             display: none;
             position: absolute;
             top: 200px;
@@ -232,7 +233,7 @@
             align-items: center;
         }
 
-        a{
+        a {
             background-color: white;
             color: black;
             font-size: larger;
@@ -240,7 +241,7 @@
             text-decoration: none;
         }
 
-        a:hover{
+        a:hover {
             color: rgb(230, 222, 115);
         }
     </style>
@@ -711,6 +712,10 @@
                         $("#fade").hide();
                     })
                 }
+                else {
+                    $("#light10").hide();
+                    $("#fade").hide();
+                }
             })
             $("#closebnt2").click(function () {
                 $("#light10").hide();
@@ -731,6 +736,10 @@
                         $("#light11").hide();
                         $("#fade").hide();
                     })
+                }
+                else {
+                    $("#light11").hide();
+                    $("#fade").hide();
                 }
             })
             $("#closebnt4").click(function () {
@@ -952,7 +961,7 @@
                     s.setAttribute("id", "大門-關");
                     s.setAttribute("src", "大門-關.jpg");
                 }
-                else{
+                else {
                     s.setAttribute("id", "大門-開");
                     s.setAttribute("src", "大門-開.jpg");
                 }
@@ -1125,7 +1134,7 @@
                     s.setAttribute("id", "大門-關");
                     s.setAttribute("src", "大門-關.jpg");
                 }
-                else{
+                else {
                     s.setAttribute("id", "大門-開");
                     s.setAttribute("src", "大門-開.jpg");
                 }
@@ -2212,11 +2221,11 @@
         <a href="密室逃脫主頁.html" style="position: absolute; top: 0; right: 0; display: none;">返回主頁</a>
         <div id="endtext">
             <p id="endtext1" style="display: none;">感謝遊玩~~</br></br>
-            通關成績:<span id="score"></span></br></br>
-            有任何疑問請聯繫開發人員</br></br>
-            但不一定會理>.O</br></br>
-            主要開發: 黎芷柔</br></br>
-            次要開發: 賴盈萱</p>
+                通關成績:<span id="score"></span></br></br>
+                有任何疑問請聯繫開發人員</br></br>
+                但不一定會理>.O</br></br>
+                主要開發: 黎芷柔</br></br>
+                次要開發: 賴盈萱</p>
         </div>
     </div>
     <div id="light24">
