@@ -224,13 +224,16 @@
             color: white;
             z-index: 1002;
             background-color: black;
+            overflow: auto;
         }
 
         #endtext {
             display: flex;
+            width: 100%;
             height: 100%;
             justify-content: center;
             align-items: center;
+            overflow: auto;
         }
 
         a {
@@ -302,6 +305,7 @@
             qabutton = document.getElementById("電腦教室-問題button");
             document.getElementById("電腦教室-問題button").addEventListener("click", qaswitch, false);
             qaans = document.getElementById("電腦教室-答案");
+            qaans.value="";
             cardsmall = document.getElementById("二樓中庭-卡小");
             cardsmall.addEventListener("click", gettool1, false);
             cardsmall2 = document.getElementById("二樓中庭-卡小2");
@@ -314,12 +318,14 @@
             qabutton1.addEventListener("click", hintask1, false);
             opencomputer = document.getElementById("一樓電腦-開機");
             opencomputerans = document.getElementById("一樓電腦-開機答案");
+            opencomputerans.value="";
             sumit = document.getElementById("階梯教室-送出");
             sumit.addEventListener("click", op, false);
             qa2 = document.getElementById("階梯教室-題目");
             qa2button = document.getElementById("階梯教室-題目button");
             qa2button.addEventListener("click", qaswitch1, false);
             qa2ans = document.getElementById("階梯教室-答案");
+            qa2ans.value="";
             card2small = document.getElementById("大門-門禁卡小");
             card2small.addEventListener("click", gettool4, false);
             qa2hint = document.getElementById("階梯教室-提示");
