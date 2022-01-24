@@ -11,18 +11,6 @@
     <style>
         @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
 
-        #preload-01 {
-            background: url(電腦教室-白板.jpg) no-repeat -9999px -9999px;
-        }
-
-        #preload-02 {
-            background: url(腦教室-座位.jpg) no-repeat -9999px -9999px;
-        }
-
-        #preload-03 {
-            background: url(電腦教室-內門關.jpg) no-repeat -9999px -9999px;
-        }
-
         body {
             font-family: "cwTeXFangSong";
             width: 100%;
@@ -288,12 +276,9 @@
         let whatmap = 2;//現在地圖為何
         let whatout = 1;
         let lev = 2;//現在所在樓層
+        let img1 = new Image();
 
         window.addEventListener("load", start, false);
-
-        $("#tool1img").mouseover(function () {
-            $("#tooltex").text = "一樓教室門進卡";
-        });
 
         function start() {
             $(document).ready(function () {
