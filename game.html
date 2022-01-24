@@ -146,13 +146,23 @@
         #light18,
         #light19,
         #light20,
-        #light21,
         #light22 {
             display: none;
             position: absolute;
             top: 20%;
             left: 20%;
             width: 60%;
+            height: 60%;
+            z-index: 1002;
+            text-align: center;
+        }
+
+        #light21 {
+            display: none;
+            position: absolute;
+            top: 20%;
+            left: 25%;
+            width: 50%;
             height: 60%;
             z-index: 1002;
             text-align: center;
@@ -265,6 +275,7 @@
         let mouseover1, mouseover2, mouseover3, mouseover4;
         let whatmap = 2;//現在地圖為何
         let whatout = 1;
+        let lev = 2;//現在所在樓層
 
         window.addEventListener("load", start, false);
 
@@ -305,7 +316,7 @@
             qabutton = document.getElementById("電腦教室-問題button");
             document.getElementById("電腦教室-問題button").addEventListener("click", qaswitch, false);
             qaans = document.getElementById("電腦教室-答案");
-            qaans.value="";
+            qaans.value = "";
             cardsmall = document.getElementById("二樓中庭-卡小");
             cardsmall.addEventListener("click", gettool1, false);
             cardsmall2 = document.getElementById("二樓中庭-卡小2");
@@ -318,14 +329,14 @@
             qabutton1.addEventListener("click", hintask1, false);
             opencomputer = document.getElementById("一樓電腦-開機");
             opencomputerans = document.getElementById("一樓電腦-開機答案");
-            opencomputerans.value="";
+            opencomputerans.value = "";
             sumit = document.getElementById("階梯教室-送出");
             sumit.addEventListener("click", op, false);
             qa2 = document.getElementById("階梯教室-題目");
             qa2button = document.getElementById("階梯教室-題目button");
             qa2button.addEventListener("click", qaswitch1, false);
             qa2ans = document.getElementById("階梯教室-答案");
-            qa2ans.value="";
+            qa2ans.value = "";
             card2small = document.getElementById("大門-門禁卡小");
             card2small.addEventListener("click", gettool4, false);
             qa2hint = document.getElementById("階梯教室-提示");
@@ -1228,6 +1239,7 @@
                         $("#fade").hide();
                         s.setAttribute("id", "一樓樓梯-出口");
                         s.setAttribute("src", "一樓樓梯-出口.jpg");
+                        buttonnot();
                     }
                     else {
                         $("#light12").hide();
@@ -1254,6 +1266,7 @@
                         $("#fade").hide();
                         s.setAttribute("id", "二樓樓梯-出口");
                         s.setAttribute("src", "二樓樓梯-出口.jpg");
+                        buttonnot();
                     }
                     else {
                         $("#light13").hide();
@@ -1390,258 +1403,301 @@
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "電腦教室-白板") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "電腦教室-座位") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "電腦教室-內門關" || s.id == "電腦教室-內門開") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓走廊") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓走廊-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "電腦教室-外門開") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓走廊-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓系圖前-左") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓系圖前-右") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓中庭") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓中庭-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓中庭-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓中庭-後") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓電梯-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓電梯") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓電梯-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓電梯-近") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓樓梯口") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "二樓樓梯-出口") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 2;
             }
             else if (s.id == "一樓樓梯-出口") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓樓梯口") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓電梯") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓電梯-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓電梯-左" || s.id == "一樓電梯-左開") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓電梯-近") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓大廳" || s.id == "一樓大廳-門開") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓大廳-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓大廳-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓大廳-後") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "大門-開" || s.id == "大門-關") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓走廊") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓走廊-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "一樓走廊-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "階梯教室-外門開" || s.id == "階梯教室-外門關") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "階梯教室-入口") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "階梯教室-入口右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "階梯教室-內門開") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "階梯教室-電腦") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "大門-右") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "大門-後") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "大門-左") {
                 leftswitch.setAttribute("src", "左.png");
                 rightswitch.setAttribute("src", "右.png");
                 upswitch.setAttribute("src", "上.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
             else if (s.id == "大門-插頭電線電腦" || s.id == "大門-插頭電線" || s.id == "大門-插頭") {
                 leftswitch.setAttribute("src", "禁止.png");
                 rightswitch.setAttribute("src", "禁止.png");
                 upswitch.setAttribute("src", "禁止.png");
                 downswitch.setAttribute("src", "下.png");
+                lev = 1;
             }
         }
 
@@ -1873,6 +1929,74 @@
         }
 
         function showmap() {
+            if (s.id == "電腦教室-電腦" || s.id == "電腦教室-白板" || s.id == "電腦教室-座位" || s.id == "電腦教室-內門開" || s.id == "電腦教室-內門關") {
+                document.getElementById("nowadd").style.left = "453px";
+                document.getElementById("nowadd").style.top = "93px";
+            }
+            else if (s.id == "電腦教室-外門開" || s.id == "二樓走廊" || s.id == "二樓走廊-右" || s.id == "二樓走廊-左") {
+                document.getElementById("nowadd").style.left = "492px";
+                document.getElementById("nowadd").style.top = "138px";
+            }
+            else if (s.id == "二樓系圖前-左" || s.id == "二樓系圖前-右") {
+                document.getElementById("nowadd").style.left = "273px";
+                document.getElementById("nowadd").style.top = "156px";
+            }
+            else if (s.id == "二樓中庭" || s.id == "二樓中庭-右" || s.id == "二樓中庭-左" || s.id == "二樓中庭-後") {
+                document.getElementById("nowadd").style.left = "97px";
+                document.getElementById("nowadd").style.top = "132px";
+            }
+            else if (s.id == "二樓電梯" || s.id == "二樓電梯-右" || s.id == "二樓電梯-左" || s.id == "二樓樓梯口") {
+                document.getElementById("nowadd").style.left = "96px";
+                document.getElementById("nowadd").style.top = "221px";
+            }
+            else if (s.id == "二樓電梯-近") {
+                document.getElementById("nowadd").style.left = "184px";
+                document.getElementById("nowadd").style.top = "225px";
+            }
+            else if (s.id == "二樓樓梯-出口") {
+                document.getElementById("nowadd").style.left = "25px";
+                document.getElementById("nowadd").style.top = "210px";
+            }
+            else if (s.id == "一樓樓梯-出口") {
+                document.getElementById("nowadd").style.left = "25px";
+                document.getElementById("nowadd").style.top = "206px";
+            }
+            else if (s.id == "一樓電梯" || s.id == "一樓電梯-右" || s.id == "一樓電梯-左" || s.id == "一樓電梯-左開" || s.id == "一樓樓梯口") {
+                document.getElementById("nowadd").style.left = "153px";
+                document.getElementById("nowadd").style.top = "224px";
+            }
+            else if (s.id == "一樓電梯-近" || s.id == "一樓電梯-開") {
+                document.getElementById("nowadd").style.left = "352px";
+                document.getElementById("nowadd").style.top = "228px";
+            }
+            else if (s.id == "一樓大廳" || s.id == "一樓大廳-右" || s.id == "一樓大廳-左" || s.id == "一樓大廳-後" || s.id == "一樓大廳-門開") {
+                document.getElementById("nowadd").style.left = "176px";
+                document.getElementById("nowadd").style.top = "154px";
+            }
+            else if (s.id == "大門" || s.id == "大門-右" || s.id == "大門-左" || s.id == "大門-後" || s.id == "大門-開" || s.id == "大門-關") {
+                document.getElementById("nowadd").style.left = "191px";
+                document.getElementById("nowadd").style.top = "53px";
+            }
+            else if (s.id == "大門-插頭" || s.id == "大門-插頭電線" || s.id == "大門-插頭電線電腦") {
+                document.getElementById("nowadd").style.left = "27px";
+                document.getElementById("nowadd").style.top = "60px";
+            }
+            else if (s.id == "階梯教室-入口" || s.id == "階梯教室-入口右" || s.id == "階梯教室-內門開" || s.id == "階梯教室-電腦") {
+                document.getElementById("nowadd").style.left = "435px";
+                document.getElementById("nowadd").style.top = "39px";
+            }
+            else if (s.id == "一樓走廊" || s.id == "一樓走廊-右" || s.id == "一樓走廊-左" || s.id == "階梯教室-外門開" || s.id == "階梯教室-外門關") {
+                document.getElementById("nowadd").style.left = "440px";
+                document.getElementById("nowadd").style.top = "152px";
+            }
+            if (whatmap == 2) {
+                if (lev == 2) document.getElementById("nowadd").style.display = "block";
+                else document.getElementById("nowadd").style.display = "none";
+            }
+            else if (whatmap == 1) {
+                if (lev == 1) document.getElementById("nowadd").style.display = "block";
+                else document.getElementById("nowadd").style.display = "none";
+            }
             $("#light21").show();
             $("#fade").show();
             $("#closebnt15").click(function () {
@@ -1884,10 +2008,14 @@
         function smap() {
             if (whatmap == 2) {
                 $("#nowmap").attr("src", "一樓地圖.jpg");
+                if (lev == 1) document.getElementById("nowadd").style.display = "block";
+                else document.getElementById("nowadd").style.display = "none";
                 whatmap = 1;
             }
             else if (whatmap == 1) {
                 $("#nowmap").attr("src", "二樓地圖.jpg");
+                if (lev == 2) document.getElementById("nowadd").style.display = "block";
+                else document.getElementById("nowadd").style.display = "none";
                 whatmap = 2;
             }
         }
@@ -2206,9 +2334,10 @@
         <input id='closebnt14' type='image' src='關閉.png'>
     </div>
     <div id="light21">
-        <img id="nowmap" src="二樓地圖.jpg" style="margin: 0 auto">
-        <input id='mpaswitch' type='button' value="一樓<->二樓" style="position: absolute; bottom: 0; right: 0;"
-            onclick="smap()">
+        <img id="nowmap" src="二樓地圖.jpg" style="position: absolute; left:0px; top:0px;">
+        <img id="nowadd" src="現在位置.png" style="position: absolute;">
+        <input id='mpaswitch' type='button' value="一樓<->二樓"
+            style="position: absolute; bottom: 0; right: 0; display: block;" onclick="smap()">
         <input id='closebnt15' type='image' src='關閉.png'>
     </div>
     <div id="light22">
